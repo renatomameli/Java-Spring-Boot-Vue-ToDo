@@ -1,27 +1,21 @@
-# Getting Started
+# Simple To Do App with Java, Spring Boot & Vue.js
+### Features
+* Anlegen neuer To Dos
+* Löschen bestehender To Dos
+* To Dos als erledigt markieren
 
-### Reference Documentation
+### Starten der Anwendung
 
-For further reference, please consider the following sections:
+Es sind einige wenige Schritte nötig, um die Anwendung zu starten.
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/3.1.3/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/3.1.3/gradle-plugin/reference/html/#build-image)
-* [Spring Data JPA](https://docs.spring.io/spring-boot/docs/3.1.3/reference/htmlsingle/index.html#data.sql.jpa-and-spring-data)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/3.1.3/reference/htmlsingle/index.html#web)
+* Im Hauptverzeichnis des Projekts befindet sich die docker-compose.yml. Um die MySQL Datenbank zu starten, muss der Befehl `docker compose up -d` 
+  gestartet werden.
+* Anschließend kann das Backend gestartet werden, indem die Main-Methode der `ToDoApplication` gestartet werden
+* Um zuletzt das Frontend zu starten, muss in das Verzeichnis `frontend` navigiert werden. Von dort aus kann der Befehl `yarn serve` ausgeführt 
+  werden.
 
-### Guides
-
-The following guides illustrate how to use some features concretely:
-
-* [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
-
-### Additional Links
-
-These additional references should also help you:
-
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
-
+### Dokumentation
+Das Projekt wurde mithilfe von verschiedenen Technologien entwickelt. Für das Backend wurde Java in Kombination mit Spring Boot verwendet. Der 
+Zugriff auf die My-SQL Datenbank wird mit Spring Data JPA erreicht. Die Datenbank selbst wird mithilfe von Docker gesteuert. Änderungen der 
+Struktur der Datenbank werden mit Flyway geregelt. Die Flyway-Skripte befinden sich unter `backend/src/main/java/ress
+ources/db/migration`. Das Frontend wurde mit Vue entwickelt. 
