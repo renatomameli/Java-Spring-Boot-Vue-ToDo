@@ -1,0 +1,5 @@
+CREATE TABLE to_do (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    description VARCHAR(255) NOT NULL,
+    done BOOLEAN NOT NULL
+);
