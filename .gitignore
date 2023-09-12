@@ -1,0 +1,28 @@
+bin
+
+# gradle
+build
+.gradle
+
+# intellij
+.idea/
+out/
+*.iml
+*.ipr
+*.iws
+
+# web project
+node_modules/
+dist/
+coverage/
+src/css
+src/**/*.js
+src/**/*.map
+*.log
+.awcache/
+web/reports/
+*.snap
+frontend/src/**/*.js
+frontend/src/**/*.map
+
+.DS_Store
