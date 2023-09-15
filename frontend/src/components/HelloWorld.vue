@@ -1,18 +1,19 @@
 <template>
-  <div class="hello">
-    <div>
-      <h1>Meine Todos</h1>
-      <ul>
-        <li v-for="todo in todos" :key="todo.id">
-          {{ todo.description }}
-          <input type="checkbox" :checked="todo.done" @change="toggleDone(todo.id)" />
-          <span @click="deleteTodo(todo.id)" style="cursor: pointer;">✖</span>
-        </li>
-      </ul>
-    </div>
-    <div>
+  <div>
+    <div class="add-item">
       <input type="text" v-model="newTodo" placeholder="New Todo" />
       <button @click="addTodo">Add Todo</button>
+    </div>
+    <div class="todo-list">
+      <ul>
+        <li v-for="todo in todos" :key="todo.id" class="todo-item">
+          <div class="todo-left">
+            <input type="checkbox" :checked="todo.done" @change="toggleDone(todo.id)" />
+            <span>{{ todo.description }}</span>
+          </div>
+          <i @click="deleteTodo(todo.id)" class="fas fa-trash-alt"></i>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -114,20 +115,63 @@ export default {
 </script>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+/* Top bar: Make it bigger and better */
+.add-item {
+  background-color: #fafafa;
+  padding: 1.5rem 13rem 1.5rem 13rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+/* Enlarge input field */
+.add-item input[type="text"] {
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  width: 85%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
-li {
-  margin: 0 10px;
+
+/* Style button */
+.add-item button {
+  font-size: 1.2rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  background-color: #050a52;
+  color: white;
+  cursor: pointer;
 }
-a {
-  color: #42b983;
+
+.todo-list {
+  margin: 3rem 10rem 3rem 10rem;
 }
-span {
-  color: red;
+
+/* Make the checkbox bigger */
+.todo-left input[type="checkbox"] {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 2rem;
+}
+
+/* Todo item */
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
+  font-size: 1.2rem;
+}
+
+/* Delete button */
+.fas {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #050a52;
 }
 </style>
