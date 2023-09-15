@@ -1,21 +1,25 @@
-# Simple To Do App mit Java, Spring Boot & Vue.js
+# Einfache To-Do-Anwendung mit Java, Spring Boot & Vue.js
+
 ### Features
-* Anlegen neuer To Dos
-* Löschen bestehender To Dos
-* To Dos als erledigt markieren
+
+* Hinzufügen neuer To-Dos
+* Löschen vorhandener To-Dos
+* Markieren von To-Dos als erledigt
 
 ### Starten der Anwendung
 
-Es sind einige wenige Schritte nötig, um die Anwendung zu starten.
+Die Anwendung kann in wenigen, einfachen Schritten gestartet werden:
 
-* Im Hauptverzeichnis des Projekts befindet sich die docker-compose.yml. Um die MySQL Datenbank zu starten, muss der Befehl `docker compose up -d` 
-  gestartet werden.
-* Anschließend kann das Backend gestartet werden, indem die Main-Methode der `ToDoApplication` gestartet werden
-* Um zuletzt das Frontend zu starten, muss in das Verzeichnis `frontend` navigiert werden. Von dort aus kann der Befehl `yarn serve` ausgeführt 
-  werden.
+* Im Hauptverzeichnis des Projekts liegt die `docker-compose.yml` Datei. Durch Ausführung des Befehls `docker compose up -d` wird die MySQL-Datenbank hochgefahren.
+* Danach kann das Backend durch das Ausführen der Main-Methode in der Klasse `ToDoApplication` gestartet werden.
+* Zuletzt muss in das Verzeichnis `frontend` navigiert werden. Durch Ausführung des Befehls `yarn serve` wird das Frontend gestartet.
 
 ### Dokumentation
-Das Projekt wurde mithilfe von verschiedenen Technologien entwickelt. Für das Backend wurde Java in Kombination mit Spring Boot verwendet. Der 
-Zugriff auf die My-SQL Datenbank wird mit Spring Data JPA erreicht. Die Datenbank selbst wird mithilfe von Docker gesteuert. Änderungen der 
-Struktur der Datenbank werden mit Flyway geregelt. Die Flyway-Skripte befinden sich unter `backend/src/main/java/ress
-ources/db/migration`. Das Frontend wurde mit Vue entwickelt. 
+
+Für die Entwicklung dieses Projekts wurden verschiedene Technologien eingesetzt:
+
+* Das Backend wurde mit Java und Spring Boot realisiert.
+* Der Zugriff auf die MySQL-Datenbank erfolgt über Spring Data JPA.
+* Die Datenbank selbst wird durch Docker verwaltet.
+* Änderungen an der Datenbankstruktur werden mit Flyway gehandhabt. Die Flyway-Skripte sind im Ordner `backend/src/main/resources/db/migration` zu finden.
+* Das Frontend wurde mit Vue.js entwickelt.
