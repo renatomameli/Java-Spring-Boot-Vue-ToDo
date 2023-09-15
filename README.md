@@ -1,4 +1,4 @@
-# Simple To Do App with Java, Spring Boot & Vue.js
+# Simple To Do App mit Java, Spring Boot & Vue.js
 ### Features
 * Anlegen neuer To Dos
 * Löschen bestehender To Dos
