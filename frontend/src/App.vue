@@ -17,13 +17,6 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Noto Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
-
 .top-bar {
   background-color: #050a52;
   color: #fff;
@@ -34,6 +27,10 @@ body {
   margin: 0;
   padding: 0;
   background: #fffb;
+  font-family: 'Noto Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
 }
 
 </style>
