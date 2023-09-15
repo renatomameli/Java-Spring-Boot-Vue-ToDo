@@ -27,7 +27,7 @@ export default {
 .top-bar {
   background-color: #050a52;
   color: #fff;
-  padding: 1em 1em 1em 4em;
+  padding: 1em 1em 1em 10em;
 }
 
 body {
