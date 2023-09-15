@@ -115,7 +115,6 @@ export default {
 </script>
 
 <style scoped>
-/* Top bar: Make it bigger and better */
 .add-item {
   background-color: #fafafa;
   padding: 1.5rem 13rem 1.5rem 13rem;
@@ -127,7 +126,6 @@ export default {
   margin-bottom: 2rem;
 }
 
-/* Enlarge input field */
 .add-item input[type="text"] {
   font-size: 1.2rem;
   padding: 0.5rem 1rem;
@@ -136,7 +134,6 @@ export default {
   border: 1px solid #ccc;
 }
 
-/* Style button */
 .add-item button {
   font-size: 1.2rem;
   padding: 0.5rem 1.5rem;
@@ -150,14 +147,12 @@ export default {
   margin: 3rem 10rem 3rem 10rem;
 }
 
-/* Make the checkbox bigger */
 .todo-left input[type="checkbox"] {
   width: 1.5rem;
   height: 1.5rem;
   margin-right: 2rem;
 }
 
-/* Todo item */
 .todo-item {
   display: flex;
   justify-content: space-between;
@@ -168,7 +163,6 @@ export default {
   font-size: 1.2rem;
 }
 
-/* Delete button */
 .fas {
   cursor: pointer;
   font-size: 1.2rem;
