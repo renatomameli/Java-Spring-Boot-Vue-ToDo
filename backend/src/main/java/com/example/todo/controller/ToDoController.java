@@ -1,6 +1,7 @@
 package com.example.todo.controller;
 
 import com.example.todo.model.ToDo;
+import com.example.todo.model.ValidationResult;
 import com.example.todo.service.ToDoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/to-dos")
-@CrossOrigin(origins = "http://localhost:8082")
+@CrossOrigin(origins = "http://localhost:8081")
 @RequiredArgsConstructor
 public class ToDoController {
     private final ToDoService toDoService;
@@ -30,9 +31,12 @@ public class ToDoController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> saveToDo(@RequestBody String description) {
-        this.toDoService.saveToDo(description);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> saveToDo(@RequestBody ToDo toDo) {
+        ValidationResult validationResult = this.toDoService.saveToDo(toDo);
+        if (validationResult.isNotValid()) {
+            return new ResponseEntity<>(validationResult.getErrorMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(new ValidationResult(), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")

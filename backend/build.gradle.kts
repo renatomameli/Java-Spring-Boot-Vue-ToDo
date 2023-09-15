@@ -29,6 +29,9 @@ dependencies {
     // Lombok
     annotationProcessor("org.projectlombok:lombok")
     compileOnly("org.projectlombok:lombok")
+
+    // Utils
+    implementation("org.apache.commons:commons-lang3:3.0")
 }
 
 tasks.withType<Test> {
