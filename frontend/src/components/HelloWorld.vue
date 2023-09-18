@@ -38,6 +38,7 @@ export default {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZW5hdG8ubWFtZWxpMDJAZ21haWwuY29tIiwiaWF0IjoxNjk1MDQ2NzMzLCJleHAiOjE2OTUwNDk2MTN9.X6XylgMaZS8IBQR8AID8M9fmUSE8VrXhtvH76aoWTSw'
           },
         });
 
@@ -54,7 +55,10 @@ export default {
     async deleteTodo(todoId) {
       try {
         const response = await fetch(`http://localhost:8080/to-dos/${todoId}`, {
-          method: 'DELETE'
+          method: 'DELETE',
+          headers: {
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZW5hdG8ubWFtZWxpMDJAZ21haWwuY29tIiwiaWF0IjoxNjk1MDQ2NzMzLCJleHAiOjE2OTUwNDk2MTN9.X6XylgMaZS8IBQR8AID8M9fmUSE8VrXhtvH76aoWTSw'
+          }
         });
 
         if (response.status === 204 || response.status === 200) {
@@ -68,7 +72,11 @@ export default {
     },
 
     async fetchTodos() {
-      fetch("http://localhost:8080/to-dos")
+      fetch("http://localhost:8080/to-dos", {
+        headers: {
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZW5hdG8ubWFtZWxpMDJAZ21haWwuY29tIiwiaWF0IjoxNjk1MDQ2NzMzLCJleHAiOjE2OTUwNDk2MTN9.X6XylgMaZS8IBQR8AID8M9fmUSE8VrXhtvH76aoWTSw'
+        }
+      })
           .then(response => response.json())
           .then(data => {
             this.todos = data;
@@ -87,6 +95,7 @@ export default {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZW5hdG8ubWFtZWxpMDJAZ21haWwuY29tIiwiaWF0IjoxNjk1MDQ2NzMzLCJleHAiOjE2OTUwNDk2MTN9.X6XylgMaZS8IBQR8AID8M9fmUSE8VrXhtvH76aoWTSw'
             },
             body: JSON.stringify(newTodoItem),
           });
