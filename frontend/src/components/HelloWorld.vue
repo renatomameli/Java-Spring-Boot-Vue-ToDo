@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import axios from 'axios'; //
 export default {
   data() {
     return {
@@ -34,11 +35,9 @@ export default {
   methods: {
     async toggleDone(todoId) {
       try {
-        const response = await fetch(`http://localhost:8080/to-dos/${todoId}`, {
-          method: 'PUT',
+        const response = await axios.put(`http://localhost:8080/to-dos/${todoId}`, null, {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZW5hdG8ubWFtZWxpMDJAZ21haWwuY29tIiwiaWF0IjoxNjk1MDQ2NzMzLCJleHAiOjE2OTUwNDk2MTN9.X6XylgMaZS8IBQR8AID8M9fmUSE8VrXhtvH76aoWTSw'
           },
         });
 
@@ -54,12 +53,7 @@ export default {
 
     async deleteTodo(todoId) {
       try {
-        const response = await fetch(`http://localhost:8080/to-dos/${todoId}`, {
-          method: 'DELETE',
-          headers: {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZW5hdG8ubWFtZWxpMDJAZ21haWwuY29tIiwiaWF0IjoxNjk1MDQ2NzMzLCJleHAiOjE2OTUwNDk2MTN9.X6XylgMaZS8IBQR8AID8M9fmUSE8VrXhtvH76aoWTSw'
-          }
-        });
+        const response = await axios.delete(`http://localhost:8080/to-dos/${todoId}`);
 
         if (response.status === 204 || response.status === 200) {
           await this.fetchTodos(); // Refresh your to-do list
@@ -72,15 +66,12 @@ export default {
     },
 
     async fetchTodos() {
-      fetch("http://localhost:8080/to-dos", {
-        headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZW5hdG8ubWFtZWxpMDJAZ21haWwuY29tIiwiaWF0IjoxNjk1MDQ2NzMzLCJleHAiOjE2OTUwNDk2MTN9.X6XylgMaZS8IBQR8AID8M9fmUSE8VrXhtvH76aoWTSw'
-        }
-      })
-          .then(response => response.json())
-          .then(data => {
-            this.todos = data;
-          }).catch((error) => console.error('Error fetching data:', error));
+      try {
+        const response = await axios.get("http://localhost:8080/to-dos");
+        this.todos = response.data;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     },
 
     async addTodo() {
@@ -91,16 +82,14 @@ export default {
         };
 
         try {
-          const response = await fetch('http://localhost:8080/to-dos', {
-            method: 'POST',
+          const response = await axios.post('http://localhost:8080/to-dos', newTodoItem, {
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZW5hdG8ubWFtZWxpMDJAZ21haWwuY29tIiwiaWF0IjoxNjk1MDQ2NzMzLCJleHAiOjE2OTUwNDk2MTN9.X6XylgMaZS8IBQR8AID8M9fmUSE8VrXhtvH76aoWTSw'
-            },
-            body: JSON.stringify(newTodoItem),
+            }
           });
 
-          if (response.ok) {
+
+          if (response.status === 200 || response.status === 201) {
             await this.fetchTodos();
             this.newTodo = '';
             this.newDeadline = '';
