@@ -1,4 +1,4 @@
-# Einfache To-Do-Anwendung mit Java, Spring Boot & Vue.js
+# To-Do-Anwendung mit Java, Spring Boot & Vue.js
 
 ### Features
 
