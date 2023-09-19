@@ -3,7 +3,7 @@
     <div class="add-item">
       <input type="text" v-model="newTodo" placeholder="New Todo" />
       <input type="date" v-model="newDeadline" placeholder="Deadline" />
-      <button @click="addTodo">Add Todo</button>
+      <button @click="addTodo">Add</button>
     </div>
     <div class="todo-list">
       <ul>
@@ -29,7 +29,8 @@ export default {
     return {
       todos: [],
       newTodo: '',
-      newDeadline: ''
+      newDeadline: '',
+      isLoggedIn: false
     };
   },
   methods: {
@@ -56,7 +57,7 @@ export default {
         const response = await axios.delete(`http://localhost:8080/to-dos/${todoId}`);
 
         if (response.status === 204 || response.status === 200) {
-          await this.fetchTodos(); // Refresh your to-do list
+          await this.fetchTodos();
         } else {
           console.error(`Failed to delete to-do with id ${todoId}`);
         }
@@ -71,6 +72,8 @@ export default {
         this.todos = response.data;
       } catch (error) {
         if (error.response && error.response.status === 403) {
+          delete axios.defaults.headers.common['Authorization'];
+          localStorage.removeItem('token');
           this.$router.push('/login');
         }
       }
@@ -122,7 +125,7 @@ export default {
   mounted() {
     this.fetchTodos();
   },
-  name: 'HelloWorld',
+  name: 'ToDoList',
   props: {
     msg: String
   }
@@ -144,7 +147,7 @@ export default {
 .add-item input[type="text"] {
   font-size: 1.2rem;
   padding: 0.5rem 1rem;
-  width: 75%;
+  width: 70%;
   border-radius: 5px;
   border: 1px solid #ccc;
 }

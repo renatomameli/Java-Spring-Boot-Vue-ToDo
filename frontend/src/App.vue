@@ -1,8 +1,7 @@
 <template>
   <div class="top-bar">
     <router-link class="title-link" to="/"><h1>My To-Do List</h1></router-link>
-    <nav>
-      <router-link to="/login">Login</router-link>
+    <nav v-if="showLogout">
       <a @click="logout">Logout</a>
     </nav>
   </div>
@@ -13,21 +12,20 @@
 import axios from 'axios';
 export default {
   name: 'App',
+  computed: {
+    showLogout() {
+      // Hide the Logout button on the /login and /register pages
+      return this.$route.path !== '/login' && this.$route.path !== '/register';
+    }
+  },
   methods: {
     logout() {
-      // Remove the token from localStorage
       localStorage.removeItem('token');
-
-      // Reset the Axios authorization header
       delete axios.defaults.headers.common['Authorization'];
-
-      // Optionally, you can redirect the user to the login page or home page
       this.$router.push('/login');
     },
-    // ... your other methods
   }
 }
-
 </script>
 
 <style>
@@ -71,7 +69,7 @@ body {
   font-family: 'Noto Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #050a52;
 }
 
 </style>

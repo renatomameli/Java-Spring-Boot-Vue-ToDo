@@ -1,19 +1,20 @@
 <template>
-  <div>
+  <div class="login-container">
     <h1>Login</h1>
-    <form @submit.prevent="login">
-      <div>
+    <form @submit.prevent="login" class="login-form">
+      <div class="input-group">
         <label for="email">Email:</label>
         <input type="email" id="email" v-model="email" />
       </div>
-      <div>
+      <div class="input-group">
         <label for="password">Password:</label>
         <input type="password" id="password" v-model="password" />
       </div>
-      <button type="submit">Login</button>
+      <button type="submit" class="login-button">Login</button>
     </form>
-    <div class="center-container">
-      <a @click="register">No User yet? Register!</a>
+    <div v-if="loginFailed" class="error-message">Login failed. Please try again.</div>
+    <div @click="register" class="center-container">
+      <a >No User yet? Register!</a>
     </div>
   </div>
 </template>
@@ -26,7 +27,8 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      loginFailed: false
     }
   },
   methods: {
@@ -38,17 +40,12 @@ export default {
           password: this.password
         });
 
-        // Save token to Axios header for future requests
         axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
-
-        // You can also save the token in localStorage or Vuex for later use
         localStorage.setItem('token', response.data.token);
         this.$router.push('/');
 
-        // Handle the response as needed
-        console.log('User logged in:', response.data);
       } catch (error) {
-        console.error('An error occurred while logging in:', error);
+        this.loginFailed = true;
       }
     },
 
@@ -60,62 +57,58 @@ export default {
 </script>
 
 <style scoped>
+.login-container {
+  margin: 2rem auto;
+  max-width: 400px;
+  padding: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
 h1 {
   text-align: center;
   margin-bottom: 1rem;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-div {
+.input-group {
   margin-bottom: 1rem;
 }
 
 label {
+  display: inline-block;
+  width: 100px;
   font-weight: bold;
 }
 
-input[type="email"],
-input[type="password"] {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
+input {
   width: 100%;
-  max-width: 300px;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
-button[type="submit"] {
-  padding: 0.5rem 1rem;
-  background-color: #007bff;
-  border: 1px solid #007bff;
+.login-button {
+  font-size: 1rem;
+  width: 100%;
+  background-color: #050a52;
   color: white;
-  border-radius: 0.25rem;
+  padding: 10px;
+  border-radius: 4px;
   cursor: pointer;
+  border: 1px solid transparent;
 }
 
-button[type="submit"]:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+.login-button:hover {
+  background-color: #fff;
+  color: #050a52;
+  border-color: #050a52;
 }
 
-a {
-  display: inline-block;
+.error-message {
+  color: red;
+  text-align: center;
   margin-top: 1rem;
-  border: 2px solid #007bff;
-  padding: 0.25rem 0.5rem;
-  color: #007bff;
-  text-decoration: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-}
-
-a:hover {
-  background-color: #007bff;
-  color: white;
 }
 
 .center-container {
@@ -123,5 +116,17 @@ a:hover {
   justify-content: center;
   align-items: center;
   margin-top: 1rem;
+  border: 1px solid #050a52;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: white;
+  margin-bottom: 20px;
+  background: #050a52;
+}
+
+.center-container:hover {
+  color: #050a52;
+  background: white;
 }
 </style>

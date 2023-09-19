@@ -9,6 +9,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Pattern;
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -16,8 +18,12 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private static final String emailRegex = "^(.+)@(\\S+)$";
 
     public AuthResponse register(RegisterRequest request) {
+        if (!this.isValidEmail(request.getEmail())) {
+            return null;
+        }
         var user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -35,6 +41,10 @@ public class AuthService {
         var user = repository.findByEmail(request.getEmail()).orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         return AuthResponse.builder().token(jwtToken).build();
+    }
+
+    private boolean isValidEmail(String email) {
+        return Pattern.compile(emailRegex).matcher(email).matches();
     }
 
 }

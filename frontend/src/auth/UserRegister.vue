@@ -19,12 +19,13 @@
         <input type="password" id="password" v-model="password" required>
       </div>
       <button type="submit" class="register-button">Register</button>
+      <button type="button" @click="goToLogin" class="register-button">Already have an account? Back to login</button>
     </form>
   </div>
 </template>
 
 <script>
-import axios from 'axios'; // Make sure to install axios if you haven't
+import axios from 'axios';
 
 export default {
   name: 'UserRegister',
@@ -52,6 +53,9 @@ export default {
       } catch (error) {
         console.error('An error occurred while registering:', error);
       }
+    },
+    goToLogin() {
+      this.$router.push('/login');
     }
   }
 }
@@ -93,15 +97,17 @@ input {
 
 .register-button {
   width: 100%;
-  background-color: #007bff;
+  background-color: #050a52;
   color: white;
   padding: 10px;
-  border: none;
-  border-radius: 4px;
+  border: 1px solid #050a52;
+  border-radius: 0.25rem;
   cursor: pointer;
+  margin-bottom: 1rem;
 }
 
 .register-button:hover {
-  background-color: #0056b3;
+  background-color: white;
+  color: #050a52;
 }
 </style>
