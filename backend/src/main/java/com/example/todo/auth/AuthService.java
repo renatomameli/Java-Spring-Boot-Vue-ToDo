@@ -1,5 +1,7 @@
 package com.example.todo.auth;
 
+import com.example.todo.model.Role;
+import com.example.todo.model.User;
 import com.example.todo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

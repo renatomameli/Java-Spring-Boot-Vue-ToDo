@@ -1,0 +1,3 @@
+ALTER TABLE to_do
+ADD COLUMN user_id INTEGER,
+ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES user(id);

@@ -1,4 +1,4 @@
-package com.example.todo.auth;
+package com.example.todo.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

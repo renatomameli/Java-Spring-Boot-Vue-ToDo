@@ -1,4 +1,4 @@
-package com.example.todo.auth;
+package com.example.todo.model;
 
 public enum Role {
     USER,

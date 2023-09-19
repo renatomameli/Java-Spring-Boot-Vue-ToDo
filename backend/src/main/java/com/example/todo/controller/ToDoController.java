@@ -40,13 +40,13 @@ public class ToDoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> toggleDone(@PathVariable Long id) {
+    public ResponseEntity<?> toggleDone(@PathVariable Long id) {
         this.toDoService.toggleDone(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteToDo(@PathVariable Long id) {
+    public ResponseEntity<?> deleteToDo(@PathVariable Long id) {
         try {
             this.toDoService.deleteToDo(id);
             return ResponseEntity.ok().build();
