@@ -60,6 +60,10 @@ export default {
   cursor: pointer;
 }
 
+.top-bar nav a:hover {
+  text-decoration: underline;
+}
+
 body {
   margin: 0;
   padding: 0;

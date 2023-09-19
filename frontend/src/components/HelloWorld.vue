@@ -70,7 +70,9 @@ export default {
         const response = await axios.get("http://localhost:8080/to-dos");
         this.todos = response.data;
       } catch (error) {
-        console.error('Error fetching data:', error);
+        if (error.response && error.response.status === 403) {
+          this.$router.push('/login');
+        }
       }
     },
 
@@ -88,14 +90,10 @@ export default {
             }
           });
 
-
           if (response.status === 200 || response.status === 201) {
             await this.fetchTodos();
             this.newTodo = '';
             this.newDeadline = '';
-          } else {
-            const text = await response.text();
-            console.error(`Failed to delete to-do. Server says: ${text}`);
           }
         } catch (error) {
           console.error('There was a problem with the fetch operation:', error);
