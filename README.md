@@ -5,6 +5,8 @@
 * Hinzufügen neuer To-Dos
 * Löschen vorhandener To-Dos
 * Markieren von To-Dos als erledigt
+* Authentifizierung
+* User-gebundene To Dos
 
 ### Starten der Anwendung
 
@@ -12,7 +14,8 @@ Die Anwendung kann in wenigen, einfachen Schritten gestartet werden:
 
 * Im Hauptverzeichnis des Projekts liegt die `docker-compose.yml` Datei. Durch Ausführung des Befehls `docker compose up -d` wird die MySQL-Datenbank hochgefahren.
 * Danach kann das Backend durch das Ausführen der Main-Methode in der Klasse `ToDoApplication` gestartet werden.
-* Zuletzt muss in das Verzeichnis `frontend` navigiert werden. Durch Ausführung des Befehls `yarn serve` wird das Frontend gestartet.
+* Zuletzt muss in das Verzeichnis `frontend` navigiert werden. Durch Ausführung des Befehls `yarn serve` wird das Frontend gestartet. Vorher kann 
+  es nötig sein, die nötigen Abhängigkeiten über `npm install` oder `yarn install` herunterzuladen.
 
 ### Dokumentation
 
